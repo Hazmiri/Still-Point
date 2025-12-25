@@ -1,0 +1,11 @@
+# Local environment
+.env
+.vscode/
+
+# Uploaded files (keep structure, not content)
+uploads/*
+!uploads/.gitkeep
+
+# OS clutter
+Thumbs.db
+Desktop.ini
