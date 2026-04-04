@@ -1,6 +1,23 @@
 <?php
 
 declare(strict_types=1);
+
+/**
+ * STEP 1 — Validate input from URL
+ */
+
+// Check if 'id' exists
+if (!isset($_GET['id'])) {
+  die('Instrument ID not provided.');
+}
+
+// Convert to integer
+$id = (int) $_GET['id'];
+
+// Validate value
+if ($id <= 0) {
+  die('Invalid instrument ID.');
+}
 ?>
 
 <!DOCTYPE html>
