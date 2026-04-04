@@ -36,9 +36,15 @@ $stmt->execute(['id' => $id]);
 // Fetch one record
 $instrument = $stmt->fetch();
 
+/**
+ * STEP 3 — Handle missing data
+ */
+
+if (!$instrument) {
+  die('Instrument not found.');
+}
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
