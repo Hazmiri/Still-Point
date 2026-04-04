@@ -18,7 +18,27 @@ $id = (int) $_GET['id'];
 if ($id <= 0) {
   die('Invalid instrument ID.');
 }
+
+/**
+ * STEP 2 — Query database safely
+ */
+
+require_once __DIR__ . '/../src/db.php';
+
+$pdo = db();
+
+// Prepared statement protects against SQL injection
+$stmt = $pdo->prepare("SELECT * FROM instruments WHERE id = :id");
+
+// Execute with parameter
+$stmt->execute(['id' => $id]);
+
+// Fetch one record
+$instrument = $stmt->fetch();
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
