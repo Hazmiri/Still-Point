@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1); 
 // Enforces strict typing (more predictable behaviour in PHP 8+)
 
@@ -24,59 +25,64 @@ $items = $pdo
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Still Point — Collection</title>
 </head>
+
 <body>
 
-<!-- Main page title -->
-<h1>The Collection</h1>
+    <!-- Main page title -->
+    <h1>The Collection</h1>
 
-<?php if (empty($items)): ?>
-    <!-- If there are no records in the database -->
-    <p>No instruments registered yet.</p>
+    <?php if (empty($items)): ?>
+        <!-- If there are no records in the database -->
+        <p>No instruments registered yet.</p>
 
-<?php else: ?>
-    <!-- If we have data, we display it -->
-    <ul>
+    <?php else: ?>
+        <!-- If we have data, we display it -->
+        <ul>
 
-        <?php foreach ($items as $item): ?>
-            <!-- Each $item represents one row from the database -->
+            <?php foreach ($items as $item): ?>
+                <!-- Each $item represents one row from the database -->
 
-            <li>
-                <!-- htmlspecialchars prevents XSS (security requirement) -->
-                <strong>
-                    <?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?>
-                </strong><br>
+                <li>
+                    <!-- htmlspecialchars prevents XSS (security requirement) -->
+                    <strong>
+                        <a href="instrument.php?id=<?= (int)$item['id'] ?>">
+                            <?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?>
+                        </a>
+                    </strong><br>
 
-                Type:
-                <?= htmlspecialchars($item['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
+                    Type:
+                    <?= htmlspecialchars($item['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
 
-                Material:
-                <?= htmlspecialchars($item['material'], ENT_QUOTES, 'UTF-8') ?><br>
+                    Material:
+                    <?= htmlspecialchars($item['material'], ENT_QUOTES, 'UTF-8') ?><br>
 
-                <!-- Casting to int ensures clean numeric output -->
-                Length:
-                <?= (int)$item['length_mm'] ?> mm<br>
+                    <!-- Casting to int ensures clean numeric output -->
+                    Length:
+                    <?= (int)$item['length_mm'] ?> mm<br>
 
-                Weight:
-                <?= (int)$item['weight_g'] ?> g<br>
+                    Weight:
+                    <?= (int)$item['weight_g'] ?> g<br>
 
-                Tip:
-                <?= htmlspecialchars($item['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm<br>
+                    Tip:
+                    <?= htmlspecialchars($item['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm<br>
 
-                <p>
-                    <?= htmlspecialchars($item['description'], ENT_QUOTES, 'UTF-8') ?>
-                </p>
-            </li>
+                    <p>
+                        <?= htmlspecialchars($item['description'], ENT_QUOTES, 'UTF-8') ?>
+                    </p>
+                </li>
 
-            <hr>
+                <hr>
 
-        <?php endforeach; ?>
+            <?php endforeach; ?>
 
-    </ul>
-<?php endif; ?>
+        </ul>
+    <?php endif; ?>
 
 </body>
+
 </html>
