@@ -56,12 +56,29 @@ if (!$instrument) {
 
 <body>
 
-  <h1>Instrument Detail</h1>
-
-  <p>Content will appear here.</p>
+  <h1>
+    <?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>
+  </h1>
 
   <p>
-    <a href="collection.php">← Back to Collection</a>
+    <strong>Type:</strong>
+    <?= htmlspecialchars($instrument['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
+
+    <strong>Material:</strong>
+    <?= htmlspecialchars($instrument['material'], ENT_QUOTES, 'UTF-8') ?><br>
+
+    <strong>Length:</strong>
+    <?= (int)$instrument['length_mm'] ?> mm<br>
+
+    <strong>Weight:</strong>
+    <?= (int)$instrument['weight_g'] ?> g<br>
+
+    <strong>Tip:</strong>
+    <?= htmlspecialchars($instrument['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm
+  </p>
+
+  <p>
+    <?= htmlspecialchars($instrument['description'], ENT_QUOTES, 'UTF-8') ?>
   </p>
 
 </body>
