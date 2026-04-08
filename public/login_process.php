@@ -36,4 +36,15 @@ if (!$user || !password_verify($password, $user['password_hash'])) {
     die('Invalid credentials.');
 }
 
+/**
+ * Store user in session
+ */
+$_SESSION['user_id'] = $user['id'];
+
+/**
+ * Redirect to dashboard
+ */
+header('Location: dashboard.php');
+exit;
+
 ?>
