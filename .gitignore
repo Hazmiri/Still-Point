@@ -11,3 +11,7 @@ Thumbs.db
 # Uploaded files
 uploads/*
 !uploads/.gitkeep
+!uploads/.htaccess
+!uploads/instruments/
+uploads/instruments/*
+!uploads/instruments/.gitkeep

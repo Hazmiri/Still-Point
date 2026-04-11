@@ -33,7 +33,7 @@ $user = $stmt->fetch();
  * Verify password
  */
 if (!$user || !password_verify($password, $user['password_hash'])) {
-    die('Invalid credentials.');
+  die('Invalid credentials.');
 }
 
 /**
@@ -46,5 +46,3 @@ $_SESSION['user_id'] = $user['id'];
  */
 header('Location: dashboard.php');
 exit;
-
-?>
