@@ -93,3 +93,10 @@ $stmt->execute([
     'tip_mm' => $tipMm,
     'description' => $description
 ]);
+
+/**
+ * Redirect after successful insertion.
+ * For now, send the user back to the collection page to confirm the new item appears.
+ */
+header('Location: collection.php');
+exit;
