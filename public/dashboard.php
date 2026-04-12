@@ -43,10 +43,14 @@ require __DIR__ . '/../templates/header.php';
 
 <section class="stack">
     <header class="hero">
+        <p>
+            <a href="add_instrument.php">Register a new instrument</a>
+        </p>
         <div>
             <span class="eyebrow">Authenticated member area</span>
             <h1>Welcome back, <?= e($_SESSION['username']) ?>.</h1>
             <p class="lede">Use this protected dashboard to add new cues to the MySQL database. Uploads are validated on the server, stored outside the PHP pages, and linked back into the collection automatically.</p>
+
             <div class="button-row">
                 <a class="button button--accent" href="#add-instrument">Add a new cue</a>
                 <a class="button button--ghost" href="logout.php">Log out</a>
@@ -117,8 +121,7 @@ require __DIR__ . '/../templates/header.php';
                         maxlength="80"
                         required
                         value="<?= e(old_value($old, 'material')) ?>"
-                        placeholder="Ash, Maple, Carbon fibre"
-                    >
+                        placeholder="Ash, Maple, Carbon fibre">
                 </div>
 
                 <div class="field">
@@ -150,8 +153,7 @@ require __DIR__ . '/../templates/header.php';
                         type="file"
                         accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
                         required
-                        data-image-input
-                    >
+                        data-image-input>
                     <span class="field-hint">Accepted formats: JPEG, PNG or WebP. Maximum file size: 2MB.</span>
                 </div>
 
@@ -176,22 +178,22 @@ require __DIR__ . '/../templates/header.php';
                     <table>
                         <caption class="caption">Latest cues stored in the Still Point database.</caption>
                         <thead>
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Material</th>
-                            <th scope="col">Added</th>
-                        </tr>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Material</th>
+                                <th scope="col">Added</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($recentItems as $item): ?>
-                            <tr>
-                                <td><a href="instrument.php?id=<?= (int) $item['id'] ?>"><?= e($item['name']) ?></a></td>
-                                <td><?= e(cue_type_label((string) $item['cue_type'])) ?></td>
-                                <td><?= e($item['material']) ?></td>
-                                <td><?= e(date('d M Y', strtotime((string) $item['created_at']))) ?></td>
-                            </tr>
-                        <?php endforeach; ?>
+                            <?php foreach ($recentItems as $item): ?>
+                                <tr>
+                                    <td><a href="instrument.php?id=<?= (int) $item['id'] ?>"><?= e($item['name']) ?></a></td>
+                                    <td><?= e(cue_type_label((string) $item['cue_type'])) ?></td>
+                                    <td><?= e($item['material']) ?></td>
+                                    <td><?= e(date('d M Y', strtotime((string) $item['created_at']))) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
