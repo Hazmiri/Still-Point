@@ -1,14 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
 /**
- * Start the session so we can check whether the user is logged in.
+ * Load shared project setup.
  */
-session_start();
+require_once __DIR__ . '/../src/bootstrap.php';
 
 /**
- * Protect this page.
- * If the custodian is not logged in, deny access.
+ * Only authenticated users may register instruments.
  */
 if (!isset($_SESSION['user_id'])) {
     die('Access denied.');
@@ -17,47 +17,50 @@ if (!isset($_SESSION['user_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Register Instrument</title>
 </head>
+
 <body>
-  
-<h1>Register Instrument</h1>
 
-<form method="POST" action="add_instrument_process.php">
+    <h1>Register Instrument</h1>
 
-    <label for="name">Instrument name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+    <form method="POST" action="add_instrument_process.php">
 
-    <label for="cue_type">Cue type:</label><br>
-    <select id="cue_type" name="cue_type" required>
-        <option value="">Select a type</option>
-        <option value="playing">Playing</option>
-        <option value="break">Break</option>
-        <option value="training">Training</option>
-    </select><br><br>
+        <label for="name">Instrument name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
 
-    <label for="material">Material:</label><br>
-    <input type="text" id="material" name="material" required><br><br>
+        <label for="cue_type">Cue type:</label><br>
+        <select id="cue_type" name="cue_type" required>
+            <option value="">Select a type</option>
+            <option value="playing">Playing</option>
+            <option value="break">Break</option>
+            <option value="training">Training</option>
+        </select><br><br>
 
-    <label for="length_mm">Length (mm):</label><br>
-    <input type="number" id="length_mm" name="length_mm" min="1" required><br><br>
+        <label for="material">Material:</label><br>
+        <input type="text" id="material" name="material" required><br><br>
 
-    <label for="weight_g">Weight (g):</label><br>
-    <input type="number" id="weight_g" name="weight_g" min="1" required><br><br>
+        <label for="length_mm">Length (mm):</label><br>
+        <input type="number" id="length_mm" name="length_mm" min="1" required><br><br>
 
-    <label for="tip_mm">Tip size (mm):</label><br>
-    <input type="number" id="tip_mm" name="tip_mm" min="0.1" step="0.1" required><br><br>
+        <label for="weight_g">Weight (g):</label><br>
+        <input type="number" id="weight_g" name="weight_g" min="1" required><br><br>
 
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description" rows="6" cols="50" required></textarea><br><br>
+        <label for="tip_mm">Tip size (mm):</label><br>
+        <input type="number" id="tip_mm" name="tip_mm" min="0.1" step="0.1" required><br><br>
 
-    <button type="submit">Save Instrument</button>
-</form>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" rows="6" cols="50" required></textarea><br><br>
 
-<p>
-    <a href="dashboard.php">← Back to Dashboard</a>
-</p>
+        <button type="submit">Save Instrument</button>
+    </form>
+
+    <p>
+        <a href="dashboard.php">← Back to Dashboard</a>
+    </p>
 </body>
+
 </html>
