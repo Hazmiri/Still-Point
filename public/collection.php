@@ -18,7 +18,7 @@ $pdo = db();
 $items = $pdo
     ->query("SELECT * FROM instruments ORDER BY created_at DESC")
     ->fetchAll();
-?>
+
 
 $filters = [
 'q' => trim((string) ($_GET['q'] ?? '')),
