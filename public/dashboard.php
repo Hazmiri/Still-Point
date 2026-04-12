@@ -2,9 +2,17 @@
 
 declare(strict_types=1);
 
+/**
+ * Load shared project setup.
+ */
 require_once __DIR__ . '/../src/bootstrap.php';
 
-require_login();
+/**
+ * Protect the dashboard so only authenticated users can access it.
+ */
+if (!isset($_SESSION['user_id'])) {
+    die('Access denied.');
+}
 
 $pdo = db();
 
