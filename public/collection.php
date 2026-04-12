@@ -2,42 +2,56 @@
 
 declare(strict_types=1);
 
+/**
+ * Load shared project setup.
+ */
 require_once __DIR__ . '/../src/bootstrap.php';
 
+/**
+ * Create database connection.
+ */
 $pdo = db();
 
+/**
+ * Retrieve all instruments, newest first.
+ */
+$items = $pdo
+    ->query("SELECT * FROM instruments ORDER BY created_at DESC")
+    ->fetchAll();
+?>
+
 $filters = [
-    'q' => trim((string) ($_GET['q'] ?? '')),
-    'cue_type' => trim((string) ($_GET['cue_type'] ?? '')),
-    'material' => trim((string) ($_GET['material'] ?? '')),
+'q' => trim((string) ($_GET['q'] ?? '')),
+'cue_type' => trim((string) ($_GET['cue_type'] ?? '')),
+'material' => trim((string) ($_GET['material'] ?? '')),
 ];
 
 $types = instrument_types();
 
 if ($filters['cue_type'] !== '' && !isset($types[$filters['cue_type']])) {
-    $filters['cue_type'] = '';
+$filters['cue_type'] = '';
 }
 
 $materials = $pdo
-    ->query('SELECT DISTINCT material FROM instruments ORDER BY material ASC')
-    ->fetchAll(PDO::FETCH_COLUMN);
+->query('SELECT DISTINCT material FROM instruments ORDER BY material ASC')
+->fetchAll(PDO::FETCH_COLUMN);
 
 $sql = 'SELECT * FROM instruments WHERE 1 = 1';
 $params = [];
 
 if ($filters['q'] !== '') {
-    $sql .= ' AND (name LIKE :query OR material LIKE :query OR description LIKE :query)';
-    $params['query'] = '%' . $filters['q'] . '%';
+$sql .= ' AND (name LIKE :query OR material LIKE :query OR description LIKE :query)';
+$params['query'] = '%' . $filters['q'] . '%';
 }
 
 if ($filters['cue_type'] !== '') {
-    $sql .= ' AND cue_type = :cue_type';
-    $params['cue_type'] = $filters['cue_type'];
+$sql .= ' AND cue_type = :cue_type';
+$params['cue_type'] = $filters['cue_type'];
 }
 
 if ($filters['material'] !== '') {
-    $sql .= ' AND material = :material';
-    $params['material'] = $filters['material'];
+$sql .= ' AND material = :material';
+$params['material'] = $filters['material'];
 }
 
 $sql .= ' ORDER BY created_at DESC';
@@ -83,8 +97,7 @@ require __DIR__ . '/../templates/header.php';
                     name="q"
                     type="search"
                     value="<?= e($filters['q']) ?>"
-                    placeholder="Search by name, material or description"
-                >
+                    placeholder="Search by name, material or description">
             </div>
             <div class="field">
                 <label for="cue_type">Cue type</label>
