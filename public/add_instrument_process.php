@@ -65,3 +65,31 @@ if (!in_array($cueType, $allowedTypes, true)) {
 if ($lengthMm <= 0 || $weightG <= 0 || $tipMm <= 0) {
     die('Numeric values must be greater than zero.');
 }
+
+/**
+ * Load the database connection.
+ */
+require_once __DIR__ . '/../src/db.php';
+
+$pdo = db();
+
+/**
+ * Insert the new instrument using a prepared statement.
+ * This protects the database against SQL injection.
+ */
+$stmt = $pdo->prepare(
+    "INSERT INTO instruments
+        (name, cue_type, material, length_mm, weight_g, tip_mm, description)
+     VALUES
+        (:name, :cue_type, :material, :length_mm, :weight_g, :tip_mm, :description)"
+);
+
+$stmt->execute([
+    'name' => $name,
+    'cue_type' => $cueType,
+    'material' => $material,
+    'length_mm' => $lengthMm,
+    'weight_g' => $weightG,
+    'tip_mm' => $tipMm,
+    'description' => $description
+]);
