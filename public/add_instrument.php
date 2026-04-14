@@ -27,10 +27,10 @@ if (!isset($_SESSION['user_id'])) {
 
     <h1>Register Instrument</h1>
 
-    <form method="POST" action="add_instrument_process.php">
+    <form method="POST" action="add_instrument_process.php" enctype="multipart/form-data">
 
         <label for="name">Instrument name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+        <input type="file" id="image" name="image" accept=".jpg,.jpeg, .png, .webp" required><br><br>
 
         <label for="cue_type">Cue type:</label><br>
         <select id="cue_type" name="cue_type" required>
