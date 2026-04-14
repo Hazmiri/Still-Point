@@ -67,6 +67,15 @@ if ($lengthMm <= 0 || $weightG <= 0 || $tipMm <= 0) {
 }
 
 /**
+ * Check that an image file was uploaded.
+ */
+if (!isset($_FILES['image'])) {
+    die('Image upload is missing.');
+}
+
+$image = $_FILES['image'];
+
+/**
  * Load the database connection.
  */
 require_once __DIR__ . '/../src/db.php';
