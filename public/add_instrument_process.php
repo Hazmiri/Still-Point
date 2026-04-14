@@ -76,6 +76,30 @@ if (!isset($_FILES['image'])) {
 $image = $_FILES['image'];
 
 /**
+ * Validate upload error status.
+ */
+if ($image['error'] !== UPLOAD_ERR_OK) {
+    die('Image upload failed.');
+}
+
+/**
+ * Validate MIME type using server-side inspection.
+ */
+$finfo = finfo_open(FILEINFO_MIME_TYPE);
+$mimeType = finfo_file($finfo, $image['tmp_name']);
+finfo_close($finfo);
+
+$allowedMimeTypes = [
+    'image/jpeg' => '.jpg',
+    'image/png'  => '.png',
+    'image/webp' => '.webp'
+];
+
+if (!isset($allowedMimeTypes[$mimeType])) {
+    die('Invalid image type. Only JPG, PNG, and WEBP are allowed.');
+}
+
+/**
  * Load the database connection.
  */
 require_once __DIR__ . '/../src/db.php';
