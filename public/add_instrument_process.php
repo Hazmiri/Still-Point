@@ -136,9 +136,9 @@ $pdo = db();
  */
 $stmt = $pdo->prepare(
     "INSERT INTO instruments
-        (name, cue_type, material, length_mm, weight_g, tip_mm, description)
+        (name, cue_type, material, length_mm, weight_g, tip_mm, description, image_path)
      VALUES
-        (:name, :cue_type, :material, :length_mm, :weight_g, :tip_mm, :description)"
+        (:name, :cue_type, :material, :length_mm, :weight_g, :tip_mm, :description, :image_path)"
 );
 
 $stmt->execute([
@@ -148,7 +148,8 @@ $stmt->execute([
     'length_mm' => $lengthMm,
     'weight_g' => $weightG,
     'tip_mm' => $tipMm,
-    'description' => $description
+    'description' => $description,
+    'image_path' => $imagePath
 ]);
 
 /**
