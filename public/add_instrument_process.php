@@ -100,6 +100,30 @@ if (!isset($allowedMimeTypes[$mimeType])) {
 }
 
 /**
+ * Generate a safe unique filename for the uploaded image.
+ */
+$extension = $allowedMimeTypes[$mimeType];
+$uniqueFilename = bin2hex(random_bytes(16)) . $extension;
+
+/**
+ * Build the destination path.
+ */
+$uploadDirectory = __DIR__ . '/../uploads/';
+$destinationPath = $uploadDirectory . $uniqueFilename;
+
+/**
+ * Move the uploaded file from temporary storage to the uploads folder.
+ */
+if (!move_uploaded_file($image['tmp_name'], $destinationPath)) {
+    die('Failed to save uploaded image.');
+}
+
+/**
+ * Store a relative path for use in the website.
+ */
+$imagePath = '../uploads/' . $uniqueFilename;
+
+/**
  * Load the database connection.
  */
 require_once __DIR__ . '/../src/db.php';
