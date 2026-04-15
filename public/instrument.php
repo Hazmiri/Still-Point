@@ -60,6 +60,15 @@ if (!$instrument) {
     <?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>
   </h1>
 
+  <?php if (!empty($instrument['image_path'])): ?>
+    <p>
+      <img
+        src="<?= htmlspecialchars($instrument['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+        alt="<?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>"
+        width="320">
+    </p>
+  <?php endif; ?>
+
   <p>
     <strong>Type:</strong>
     <?= htmlspecialchars($instrument['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
