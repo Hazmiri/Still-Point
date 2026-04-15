@@ -30,7 +30,7 @@ if (!isset($_SESSION['user_id'])) {
     <form method="POST" action="add_instrument_process.php" enctype="multipart/form-data">
 
         <label for="name">Instrument name:</label><br>
-        <input type="file" id="image" name="image" accept=".jpg,.jpeg, .png, .webp" required><br><br>
+        <input type="text" id="name" name="name" required><br><br>
 
         <label for="cue_type">Cue type:</label><br>
         <select id="cue_type" name="cue_type" required>
@@ -51,6 +51,9 @@ if (!isset($_SESSION['user_id'])) {
 
         <label for="tip_mm">Tip size (mm):</label><br>
         <input type="number" id="tip_mm" name="tip_mm" min="0.1" step="0.1" required><br><br>
+
+        <label for="image">Instrument image:</label><br>
+        <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.webp" required><br><br>
 
         <label for="description">Description:</label><br>
         <textarea id="description" name="description" rows="6" cols="50" required></textarea><br><br>
