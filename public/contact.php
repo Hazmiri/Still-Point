@@ -55,5 +55,17 @@ require_once __DIR__ . '/../src/bootstrap.php';
     <button type="submit">Send enquiry</button>
 </form>
 
+<h2>Response Guidance</h2>
+
+<p>
+    Enquiries should identify the instrument clearly where possible.
+    This helps reduce ambiguity and supports a more useful response.
+</p>
+
+<p>
+    The form is intentionally limited to essential fields in order to reduce
+    friction and support straightforward completion.
+</p>
+
 </body>
 </html>
