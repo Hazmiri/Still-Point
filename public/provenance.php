@@ -45,5 +45,22 @@ require_once __DIR__ . '/../src/bootstrap.php';
     the site remains readable, purposeful, and easier to maintain.
 </p>
 
+<h2>Selection Principles</h2>
+
+<ul>
+    <li>Only cue instruments within the defined collection scope are included.</li>
+    <li>Each entry must have a clear functional type, such as playing, break, or training.</li>
+    <li>Material and dimensional data must be recorded in a structured form.</li>
+    <li>Descriptions should explain the instrument’s intended use and handling qualities.</li>
+</ul>
+
+<h2>Why the Collection Is Narrow</h2>
+
+<p>
+    A narrow collection improves consistency, usability, and data quality.
+    It also reflects the project’s aim of creating a database-driven system
+    that is specific enough to be managed carefully and evaluated critically.
+</p>
+
 </body>
 </html>
