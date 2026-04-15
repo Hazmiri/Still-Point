@@ -30,6 +30,17 @@ $recentInstruments = $stmt->fetchAll();
 </head>
 <body>
 
+<nav aria-label="Main site navigation">
+    <ul>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="collection.php">Collection</a></li>
+        <li><a href="provenance.php">Provenance</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li><a href="faq.php">FAQ</a></li>
+        <li><a href="login.php">Custodian Access</a></li>
+    </ul>
+</nav>
+
 <h1>Still Point</h1>
 
 <p>A curated collection of precision cue instruments.</p>
