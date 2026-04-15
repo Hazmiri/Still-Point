@@ -28,7 +28,16 @@ require_once __DIR__ . '/../src/bootstrap.php';
 
 <h1>Contact</h1>
 
-<p>Contact information and enquiry form will appear here.</p>
+<p>
+    Visitors may use this page to send an enquiry about an instrument,
+    ask for clarification about the collection, or request further detail
+    about a listed entry.
+</p>
+
+<p>
+    The contact process is designed to remain simple and readable,
+    with clear field labels and restrained input requirements.
+</p>
 
 </body>
 </html>
