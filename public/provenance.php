@@ -28,7 +28,22 @@ require_once __DIR__ . '/../src/bootstrap.php';
 
 <h1>Provenance</h1>
 
-<p>Content will be added here.</p>
+<p>
+    Still Point was created as a focused archive of precision cue instruments.
+    The purpose of the collection is not breadth, but disciplined selection.
+</p>
+
+<p>
+    Each instrument is recorded as a distinct entry with attributes that affect
+    control, balance, and intended use. This allows visitors to compare items in a
+    structured way rather than browsing an unfocused general catalogue.
+</p>
+
+<p>
+    The archive gives attention to material composition, dimensional properties,
+    and functional classification. By limiting the collection to a specific range,
+    the site remains readable, purposeful, and easier to maintain.
+</p>
 
 </body>
 </html>
