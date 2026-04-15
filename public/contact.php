@@ -39,5 +39,21 @@ require_once __DIR__ . '/../src/bootstrap.php';
     with clear field labels and restrained input requirements.
 </p>
 
+<form method="POST" action="contact_process.php">
+    <label for="name">Your name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email address:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="subject">Subject:</label><br>
+    <input type="text" id="subject" name="subject" required><br><br>
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="8" cols="50" required></textarea><br><br>
+
+    <button type="submit">Send enquiry</button>
+</form>
+
 </body>
 </html>
