@@ -46,5 +46,23 @@ require_once __DIR__ . '/../src/bootstrap.php';
     and managed with greater clarity, accuracy, and usability.
 </p>
 
+<h2>How do I view more detail about an instrument?</h2>
+<p>
+    Select an instrument from the public collection page.
+    Each listed item links to a dedicated detail page containing its recorded attributes.
+</p>
+
+<h2>What information is recorded for each instrument?</h2>
+<p>
+    Entries may include name, cue type, material, dimensional properties, descriptive notes,
+    and where available, an uploaded image.
+</p>
+
+<h2>How can I make an enquiry?</h2>
+<p>
+    Use the contact page and provide a clear subject and message.
+    Identifying the relevant instrument helps reduce ambiguity and supports a better response.
+</p>
+
 </body>
 </html>
