@@ -34,41 +34,45 @@ require_once __DIR__ . '/../templates/header.php';
     <ul>
         <?php foreach ($items as $item): ?>
             <li>
-                <strong>
-                    <a href="instrument.php?id=<?= (int)$item['id'] ?>">
-                        <?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?>
-                    </a>
-                </strong><br>
+                <article>
+                    <strong>
+                        <a href="instrument.php?id=<?= (int)$item['id'] ?>">
+                            <?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?>
+                        </a>
+                    </strong><br>
 
-                <?php if (!empty($item['image_path'])): ?>
+                    <?php if (!empty($item['image_path'])): ?>
+                        <p>
+                            <img
+                                src="<?= htmlspecialchars($item['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+                                alt="<?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?>"
+                                width="220">
+                        </p>
+                    <?php endif; ?>
+
+                    Type:
+                    <?= htmlspecialchars($item['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
+
+                    Material:
+                    <?= htmlspecialchars($item['material'], ENT_QUOTES, 'UTF-8') ?><br>
+
+                    Length:
+                    <?= (int)$item['length_mm'] ?> mm<br>
+
+                    Weight:
+                    <?= (int)$item['weight_g'] ?> g<br>
+
+                    Tip:
+                    <?= htmlspecialchars((string) $item['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm<br>
+
                     <p>
-                        <img
-                            src="<?= htmlspecialchars($item['image_path'], ENT_QUOTES, 'UTF-8') ?>"
-                            alt="<?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?>"
-                            width="220">
+                        <?= htmlspecialchars($item['description'], ENT_QUOTES, 'UTF-8') ?>
                     </p>
-                <?php endif; ?>
-
-                Type:
-                <?= htmlspecialchars($item['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
-
-                Material:
-                <?= htmlspecialchars($item['material'], ENT_QUOTES, 'UTF-8') ?><br>
-
-                Length:
-                <?= (int)$item['length_mm'] ?> mm<br>
-
-                Weight:
-                <?= (int)$item['weight_g'] ?> g<br>
-
-                Tip:
-                <?= htmlspecialchars((string) $item['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm<br>
-
-                <p>
-                    <?= htmlspecialchars($item['description'], ENT_QUOTES, 'UTF-8') ?>
-                </p>
+                </article>
             </li>
-            <hr>
+
+            <hr> 
+
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
