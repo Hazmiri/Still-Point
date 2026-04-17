@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -13,28 +14,30 @@ if (!isset($pageTitle) || $pageTitle === '') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-<header>
+    <header>
 
-    <nav aria-label="Main site navigation">
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <li><a href="collection.php">Collection</a></li>
-            <li><a href="provenance.php">Provenance</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <li><a href="faq.php">FAQ</a></li>
-            <li><a href="login.php">Custodian Access</a></li>
+        <nav aria-label="Main site navigation">
+            <ul>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="collection.php">Collection</a></li>
+                <li><a href="provenance.php">Provenance</a></li>
+                <li><a href="contact.php">Contact</a></li>
+                <li><a href="faq.php">FAQ</a></li>
+                <li><a href="login.php">Custodian Access</a></li>
             </ul>
-    </nav>
+        </nav>
 
-</header>
+    </header>
 
-<main>
-    
-</main>
+    <main>
+
+    </main>
