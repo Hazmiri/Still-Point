@@ -31,24 +31,28 @@ $recentInstruments = $stmt->fetchAll();
 require_once __DIR__ . '/../templates/header.php';
 ?>
 
-<h1>Still Point</h1>
+<section>
 
-<p>
-    Still Point is a focused digital catalogue of precision cue instruments.
-    The collection is curated around control, balance, composition, and intended use.
-</p>
+    <h1>Still Point</h1>
 
-<p>
-    Rather than presenting a general sports shop, the site concentrates on a narrow
-    and deliberate range of cue-based instruments so that each entry can be documented
-    with care and precision.
-</p>
+    <p>
+        Still Point is a focused digital catalogue of precision cue instruments.
+        The collection is curated around control, balance, composition, and intended use.
+    </p>
 
-<p>
-    Visitors can explore the public collection, read instrument details, and understand
-    the principles behind the archive. Authenticated custodians can add new instruments
-    through the protected console.
-</p>
+    <p>
+        Rather than presenting a general sports shop, the site concentrates on a narrow
+        and deliberate range of cue-based instruments so that each entry can be documented
+        with care and precision.
+    </p>
+
+    <p>
+        Visitors can explore the public collection, read instrument details, and understand
+        the principles behind the archive. Authenticated custodians can add new instruments
+        through the protected console.
+    </p>
+
+</section>
 
 <h2>Recent Instruments</h2>
 
