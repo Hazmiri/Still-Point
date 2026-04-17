@@ -8,7 +8,7 @@ $pageTitle = 'Still Point — Contact';
 require_once __DIR__ . '/../templates/header.php';
 ?>
 
-<h1>Contact</h1>
+<h1 id="contact-heading">Contact</h1>
 
 <p>
     Visitors may use this page to send an enquiry about an instrument,
@@ -21,7 +21,7 @@ require_once __DIR__ . '/../templates/header.php';
     with clear field labels and restrained input requirements.
 </p>
 
-<form method="POST" action="contact_process.php">
+<form method="POST" action="contact_process.php" aria-labelledby="contact-heading">
     <label for="name">Your name:</label><br>
     <input type="text" id="name" name="name" required><br><br>
 
