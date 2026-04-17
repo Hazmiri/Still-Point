@@ -18,7 +18,7 @@ if (!isset($pageTitle) || $pageTitle === '') {
     <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
 </head>
 <body>
-
+<header>
 <nav aria-label="Main site navigation">
     <ul>
         <li><a href="index.php">Home</a></li>
@@ -29,3 +29,8 @@ if (!isset($pageTitle) || $pageTitle === '') {
         <li><a href="login.php">Custodian Access</a></li>
     </ul>
 </nav>
+</header>
+
+<main>
+    
+</main>
