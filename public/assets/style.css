@@ -64,3 +64,33 @@ footer {
 section {
     margin-bottom: 2rem;
 }
+
+/* Navigation area */
+header {
+    padding-top: 1.5rem;
+}
+
+nav[aria-label="Main site navigation"] {
+    border-bottom: 1px solid #d9d2c3;
+    padding-bottom: 1rem;
+}
+
+nav[aria-label="Main site navigation"] ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+}
+
+nav[aria-label="Main site navigation"] a {
+    color: #243b53;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav[aria-label="Main site navigation"] a:hover,
+nav[aria-label="Main site navigation"] a:focus {
+    text-decoration: underline;
+}
