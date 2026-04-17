@@ -38,3 +38,29 @@ textarea,
 button {
     font: inherit;
 }
+
+/* Shared page regions */
+header,
+main,
+footer {
+    width: min(1100px, calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+/* Main content breathing room */
+main {
+    padding: 2rem 0 3rem;
+}
+
+/* Footer spacing */
+footer {
+    padding: 1.5rem 0 2.5rem;
+    border-top: 1px solid #d9d2c3;
+    color: #52606d;
+    font-size: 0.95rem;
+}
+
+/* Sections */
+section {
+    margin-bottom: 2rem;
+}
