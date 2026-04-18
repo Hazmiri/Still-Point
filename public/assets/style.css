@@ -191,3 +191,18 @@ article img {
 hr {
     display: none;
 }
+
+/* Links */
+a {
+    color: #3e4c59;
+}
+
+a:hover,
+a:focus {
+    color: #102a43;
+}
+
+/* Footer */
+footer p {
+    margin: 0;
+}
