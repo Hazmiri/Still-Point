@@ -216,3 +216,27 @@ textarea:focus {
     outline: 3px solid #486581;
     outline-offset: 2px;
 }
+
+/* Error styling */
+.error-summary {
+    border: 1px solid #d64545;
+    background-color: #fff5f5;
+    padding: 1rem;
+    border-radius: 0.35rem;
+    margin-bottom: 1.5rem;
+}
+
+.error-summary strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #9b1c1c;
+}
+
+.error-summary ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}
+
+.error-summary li {
+    color: #9b1c1c;
+}
