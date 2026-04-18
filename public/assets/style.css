@@ -128,3 +128,48 @@ p {
 ul {
     padding-left: 1.25rem;
 }
+
+/* Forms */
+form {
+    max-width: 720px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+    color: #243b53;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #bcccdc;
+    border-radius: 0.35rem;
+    background-color: #ffffff;
+    color: #102a43;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    min-height: 10rem;
+    resize: vertical;
+}
+
+button {
+    padding: 0.75rem 1.15rem;
+    border: 1px solid #243b53;
+    border-radius: 0.35rem;
+    background-color: #243b53;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+button:hover,
+button:focus {
+    background-color: #102a43;
+}
