@@ -173,3 +173,21 @@ button:hover,
 button:focus {
     background-color: #102a43;
 }
+
+/* Collection view */
+article {
+    background-color: #ffffff;
+    border: 1px solid #d9d2c3;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+article img {
+    margin-bottom: 1rem;
+    border-radius: 0.35rem;
+}
+
+hr {
+    display: none;
+}
