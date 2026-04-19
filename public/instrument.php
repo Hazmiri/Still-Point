@@ -56,39 +56,45 @@ if (!$instrument) {
 
 <body>
 
-  <h1>
-    <?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>
-  </h1>
+  <section class="instrument-detail">
+    <h1>
+      <?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>
+    </h1>
 
-  <?php if (!empty($instrument['image_path'])): ?>
+    <?php if (!empty($instrument['image_path'])): ?>
+      <p>
+        <img
+          src="<?= htmlspecialchars($instrument['image_path'], ENT_QUOTES, 'UTF-8') ?>"
+          alt="<?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>"
+          width="320">
+      </p>
+    <?php endif; ?>
+
     <p>
-      <img
-        src="<?= htmlspecialchars($instrument['image_path'], ENT_QUOTES, 'UTF-8') ?>"
-        alt="<?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>"
-        width="320">
+      <strong>Type:</strong>
+      <?= htmlspecialchars($instrument['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
+
+      <strong>Material:</strong>
+      <?= htmlspecialchars($instrument['material'], ENT_QUOTES, 'UTF-8') ?><br>
+
+      <strong>Length:</strong>
+      <?= (int)$instrument['length_mm'] ?> mm<br>
+
+      <strong>Weight:</strong>
+      <?= (int)$instrument['weight_g'] ?> g<br>
+
+      <strong>Tip:</strong>
+      <?= htmlspecialchars((string) $instrument['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm
     </p>
-  <?php endif; ?>
 
-  <p>
-    <strong>Type:</strong>
-    <?= htmlspecialchars($instrument['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
+    <p>
+      <?= htmlspecialchars($instrument['description'], ENT_QUOTES, 'UTF-8') ?>
+    </p>
 
-    <strong>Material:</strong>
-    <?= htmlspecialchars($instrument['material'], ENT_QUOTES, 'UTF-8') ?><br>
-
-    <strong>Length:</strong>
-    <?= (int)$instrument['length_mm'] ?> mm<br>
-
-    <strong>Weight:</strong>
-    <?= (int)$instrument['weight_g'] ?> g<br>
-
-    <strong>Tip:</strong>
-    <?= htmlspecialchars($instrument['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm
-  </p>
-
-  <p>
-    <?= htmlspecialchars($instrument['description'], ENT_QUOTES, 'UTF-8') ?>
-  </p>
+    <p>
+      <a href="collection.php">← Back to Collection</a>
+    </p>
+  </section>
 
 </body>
 

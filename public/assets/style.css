@@ -270,3 +270,16 @@ nav a.active {
     border-bottom: 2px solid #243b53;
     padding-bottom: 0.2rem;
 }
+
+.instrument-detail {
+    max-width: 720px;
+}
+
+.instrument-detail p {
+    margin-bottom: 0.5rem;
+}
+
+.instrument-detail strong {
+    display: inline-block;
+    min-width: 90px;
+}
