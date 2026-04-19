@@ -27,12 +27,12 @@ if (!isset($pageTitle) || $pageTitle === '') {
 
         <nav aria-label="Main site navigation">
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="collection.php">Collection</a></li>
-                <li><a href="provenance.php">Provenance</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="faq.php">FAQ</a></li>
-                <li><a href="login.php">Custodian Access</a></li>
+                <li><a href="index.php" class="<?= $activePage === 'home' ? 'active' : '' ?>">Home</a></li>
+                <li><a href="collection.php" class="<?= $activePage === 'collection' ? 'active' : '' ?>">Collection</a></li>
+                <li><a href="provenance.php" class="<?= $activePage === 'provenance' ? 'active' : '' ?>">Provenance</a></li>
+                <li><a href="contact.php" class="<?= $activePage === 'contact' ? 'active' : '' ?>">Contact</a></li>
+                <li><a href="faq.php" class="<?= $activePage === 'faq' ? 'active' : '' ?>">FAQ</a></li>
+                <li><a href="login.php" class="<?= $activePage === 'login' ? 'active' : '' ?>">Custodian Access</a></li>
             </ul>
         </nav>
 
