@@ -1,11 +1,10 @@
 <?php
-
 declare(strict_types=1);
 
 /**
- * Start session because this is a protected action.
+ * Load shared project setup.
  */
-session_start();
+require_once __DIR__ . '/../src/bootstrap.php';
 
 /**
  * Only logged-in users can add instruments.
@@ -61,10 +60,18 @@ if (!in_array($cueType, $allowedTypes, true)) {
 }
 
 /**
- * Validate numeric values.
+ * Validate numeric values against realistic ranges.
  */
-if ($lengthMm <= 0 || $weightG <= 0 || $tipMm <= 0) {
-    die('Numeric values must be greater than zero.');
+if ($lengthMm < 900 || $lengthMm > 1700) {
+    die('Length must be between 900 mm and 1700 mm.');
+}
+
+if ($weightG < 300 || $weightG > 800) {
+    die('Weight must be between 300 g and 800 g.');
+}
+
+if ($tipMm < 7.0 || $tipMm > 15.0) {
+    die('Tip size must be between 7.0 mm and 15.0 mm.');
 }
 
 /**
@@ -81,6 +88,15 @@ $image = $_FILES['image'];
  */
 if ($image['error'] !== UPLOAD_ERR_OK) {
     die('Image upload failed.');
+}
+
+/**
+ * Limit image size to 2 MB.
+ */
+$maxFileSize = 2 * 1024 * 1024;
+
+if ($image['size'] > $maxFileSize) {
+    die('Image must not exceed 2 MB.');
 }
 
 /**
@@ -110,6 +126,11 @@ $uniqueFilename = bin2hex(random_bytes(16)) . $extension;
  * Build the destination path.
  */
 $uploadDirectory = __DIR__ . '/../uploads/';
+
+if (!is_dir($uploadDirectory)) {
+    die('Upload directory does not exist.');
+}
+
 $destinationPath = $uploadDirectory . $uniqueFilename;
 
 /**
@@ -125,10 +146,8 @@ if (!move_uploaded_file($image['tmp_name'], $destinationPath)) {
 $imagePath = '../uploads/' . $uniqueFilename;
 
 /**
- * Load the database connection.
+ * Create database connection.
  */
-require_once __DIR__ . '/../src/db.php';
-
 $pdo = db();
 
 /**
@@ -155,7 +174,6 @@ $stmt->execute([
 
 /**
  * Redirect after successful insertion.
- * For now, send the user back to the collection page to confirm the new item appears.
  */
 header('Location: collection.php');
 exit;
