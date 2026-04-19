@@ -240,3 +240,13 @@ textarea:focus {
 .error-summary li {
     color: #9b1c1c;
 }
+
+/* Success messages */
+.flash-success {
+    border: 1px solid #2f855a;
+    background-color: #f0fff4;
+    padding: 1rem;
+    border-radius: 0.35rem;
+    margin-bottom: 1.5rem;
+    color: #22543d;
+}

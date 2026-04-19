@@ -39,5 +39,11 @@ if (!isset($pageTitle) || $pageTitle === '') {
     </header>
 
     <main>
-
+        <?php if (!empty($flashMessages)): ?>
+            <?php foreach ($flashMessages as $message): ?>
+                <div class="flash-success">
+                    <?= e($message) ?>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </main>
