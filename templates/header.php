@@ -1,29 +1,31 @@
 <?php
-
 declare(strict_types=1);
 
-/**
- * Shared page header.
- *
- * Expected variables:
- * - $pageTitle: string
- */
 if (!isset($pageTitle) || $pageTitle === '') {
     $pageTitle = 'Still Point';
 }
+
+if (!isset($activePage)) {
+    $activePage = '';
+}
+
+$flashMessages = take_flash_messages();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= e($pageTitle) ?></title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
-
 <body>
 
-    <header>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+    <div class="site-header-bar">
+        <a class="site-brand" href="index.php">Still Point</a>
 
         <nav aria-label="Main site navigation">
             <ul>
@@ -35,15 +37,14 @@ if (!isset($pageTitle) || $pageTitle === '') {
                 <li><a href="login.php" class="<?= $activePage === 'login' ? 'active' : '' ?>">Custodian Access</a></li>
             </ul>
         </nav>
+    </div>
+</header>
 
-    </header>
-
-    <main>
-        <?php if (!empty($flashMessages)): ?>
-            <?php foreach ($flashMessages as $message): ?>
-                <div class="flash-success">
-                    <?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?>
-                </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </main>
+<main id="main-content">
+    <?php if (!empty($flashMessages)): ?>
+        <?php foreach ($flashMessages as $flash): ?>
+            <div class="flash-message flash-message--<?= e($flash['type']) ?>">
+                <?= e($flash['message']) ?>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
