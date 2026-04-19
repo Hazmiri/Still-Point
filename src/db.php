@@ -1,7 +1,9 @@
 <?php
-
 declare(strict_types=1);
 
+/**
+ * Create and reuse a PDO connection.
+ */
 function db(): PDO
 {
     static $pdo = null;
