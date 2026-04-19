@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../src/bootstrap.php';
@@ -34,7 +35,7 @@ require_once __DIR__ . '/../templates/header.php';
     <label for="message">Message:</label><br>
     <textarea id="message" name="message" rows="8" cols="50" required></textarea><br><br>
 
-    <button type="submit">Send enquiry</button>
+    <button class="button button--primary" type="submit">Send enquiry</button>
 </form>
 
 <h2>Response Guidance</h2>

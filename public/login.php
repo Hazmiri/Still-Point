@@ -34,7 +34,7 @@ require_once __DIR__ . '/../src/bootstrap.php';
         </label>
         <br><br>
 
-        <button type="submit">Enter</button>
+        <button class="button button--primary" type="submit">Enter</button>
 
     </form>
 
