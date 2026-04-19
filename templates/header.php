@@ -42,7 +42,7 @@ if (!isset($pageTitle) || $pageTitle === '') {
         <?php if (!empty($flashMessages)): ?>
             <?php foreach ($flashMessages as $message): ?>
                 <div class="flash-success">
-                    <?= e($message) ?>
+                    <?= htmlspecialchars($message, ENT_QUOTES, 'UTF-8') ?>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
