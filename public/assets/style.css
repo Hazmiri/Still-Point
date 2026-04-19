@@ -250,3 +250,18 @@ textarea:focus {
     margin-bottom: 1.5rem;
     color: #22543d;
 }
+
+/* Collection card layout */
+article {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Responsive fallback */
+@media (max-width: 700px) {
+    article {
+        grid-template-columns: 1fr;
+    }
+}
