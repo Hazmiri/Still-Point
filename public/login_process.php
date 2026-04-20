@@ -1,48 +1,51 @@
 <?php
-
 declare(strict_types=1);
 
-/**
- * Start session to store login state
- */
-session_start();
+require_once __DIR__ . '/../src/bootstrap.php';
 
-/**
- * Validate input
- */
-if (!isset($_POST['username'], $_POST['password'])) {
-  die('Invalid request.');
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    flash('Invalid login request.', 'error');
+    redirect('login.php');
 }
 
-$username = trim($_POST['username']);
-$password = $_POST['password'];
+if (!verify_csrf($_POST['csrf_token'] ?? null)) {
+    flash('Your session token was invalid. Please try again.', 'error');
+    redirect('login.php');
+}
 
-require_once __DIR__ . '/../src/db.php';
+$username = trim($_POST['username'] ?? '');
+$password = $_POST['password'] ?? '';
+
+$errors = [];
+$old = [
+    'username' => $username,
+];
+
+if ($username === '' || $password === '') {
+    $errors[] = 'Username and password are required.';
+}
+
+if ($errors !== []) {
+    store_form_state('login', $errors, $old);
+    redirect('login.php');
+}
 
 $pdo = db();
 
-/**
- * Retrieve user by username
- */
 $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
 $stmt->execute(['username' => $username]);
 
 $user = $stmt->fetch();
 
-/**
- * Verify password
- */
 if (!$user || !password_verify($password, $user['password_hash'])) {
-  die('Invalid credentials.');
+    store_form_state('login', ['Invalid username or password.'], $old);
+    redirect('login.php');
 }
 
-/**
- * Store user in session
- */
-$_SESSION['user_id'] = $user['id'];
+session_regenerate_id(true);
 
-/**
- * Redirect to dashboard
- */
-header('Location: dashboard.php');
-exit;
+$_SESSION['user_id'] = $user['id'];
+$_SESSION['username'] = $user['username'];
+
+flash('Signed in successfully.');
+redirect('dashboard.php');
