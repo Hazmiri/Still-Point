@@ -1,63 +1,48 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Load shared setup.
- */
 require_once __DIR__ . '/../src/bootstrap.php';
 
-/**
- * Only allow POST requests.
- */
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die('Invalid request method.');
+    flash('Invalid enquiry request.', 'error');
+    redirect('contact.php');
 }
 
-/**
- * Required fields.
- */
-$requiredFields = ['name', 'email', 'subject', 'message'];
-
-foreach ($requiredFields as $field) {
-    if (!isset($_POST[$field])) {
-        die('Missing form field.');
-    }
+if (!verify_csrf($_POST['csrf_token'] ?? null)) {
+    flash('Your session token was invalid. Please try again.', 'error');
+    redirect('contact.php');
 }
 
-/**
- * Clean input.
- */
-$name = trim($_POST['name']);
-$email = trim($_POST['email']);
-$subject = trim($_POST['subject']);
-$message = trim($_POST['message']);
+$name = trim($_POST['name'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$subject = trim($_POST['subject'] ?? '');
+$message = trim($_POST['message'] ?? '');
 
-/**
- * Validate empty fields.
- */
+$old = [
+    'name' => $name,
+    'email' => $email,
+    'subject' => $subject,
+    'message' => $message,
+];
+
+$errors = [];
+
 if ($name === '' || $email === '' || $subject === '' || $message === '') {
-    die('All fields are required.');
+    $errors[] = 'All fields are required.';
+}
+
+if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = 'Please provide a valid email address.';
+}
+
+if ($errors !== []) {
+    store_form_state('contact', $errors, $old);
+    redirect('contact.php');
 }
 
 /**
- * Validate email format.
+ * In this project version, successful handling is simulated.
+ * The user still receives a complete validation and feedback flow.
  */
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die('Invalid email address.');
-}
-
-/**
- * OPTIONAL — store message in database
- * For now, we simulate handling.
- */
-
-/**
- * Create success message (flash).
- */
-$_SESSION['flash_messages'][] = 'Your enquiry has been sent successfully.';
-
-/**
- * Redirect back to contact page.
- */
-header('Location: contact.php');
-exit;
+flash('Your enquiry has been sent successfully.');
+redirect('contact.php');
