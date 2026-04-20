@@ -1,53 +1,52 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Load shared project setup.
- */
 require_once __DIR__ . '/../src/bootstrap.php';
 
-/**
- * Set page title for shared header.
- */
 $pageTitle = 'Still Point — Provenance';
+$activePage = 'provenance';
 
 require_once __DIR__ . '/../templates/header.php';
 ?>
 
-<h1>Provenance</h1>
+<section class="panel">
+    <h1>Provenance</h1>
 
-<p>
-    Still Point was created as a focused archive of precision cue instruments.
-    The purpose of the collection is not breadth, but disciplined selection.
-</p>
+    <p class="lede">
+        Still Point was created as a focused archive of precision cue instruments.
+        The purpose of the collection is not breadth, but disciplined selection.
+    </p>
 
-<p>
-    Each instrument is recorded as a distinct entry with attributes that affect
-    control, balance, and intended use. This allows visitors to compare items in a
-    structured way rather than browsing an unfocused general catalogue.
-</p>
+    <p>
+        Each instrument is recorded as a distinct entry with attributes that affect
+        control, balance, and intended use. This allows visitors to compare items in a
+        structured way rather than browsing an unfocused general catalogue.
+    </p>
 
-<p>
-    The archive gives attention to material composition, dimensional properties,
-    and functional classification. By limiting the collection to a specific range,
-    the site remains readable, purposeful, and easier to maintain.
-</p>
+    <p>
+        The archive gives attention to material composition, dimensional properties,
+        and functional classification. By limiting the collection to a specific range,
+        the site remains readable, purposeful, and easier to maintain.
+    </p>
+</section>
 
-<h2>Selection Principles</h2>
+<section class="panel">
+    <h2>Selection Principles</h2>
 
-<ul>
-    <li>Only cue instruments within the defined collection scope are included.</li>
-    <li>Each entry must have a clear functional type, such as playing, break, or training.</li>
-    <li>Material and dimensional data must be recorded in a structured form.</li>
-    <li>Descriptions should explain the instrument’s intended use and handling qualities.</li>
-</ul>
+    <ul>
+        <li>Only cue instruments within the defined collection scope are included.</li>
+        <li>Each entry must have a clear functional type, such as playing, break, or training.</li>
+        <li>Material and dimensional data must be recorded in a structured form.</li>
+        <li>Descriptions should explain the instrument’s intended use and handling qualities.</li>
+    </ul>
 
-<h2>Why the Collection Is Narrow</h2>
+    <h2>Why the Collection Is Narrow</h2>
 
-<p>
-    A narrow collection improves consistency, usability, and data quality.
-    It also reflects the project’s aim of creating a database-driven system
-    that is specific enough to be managed carefully and evaluated critically.
-</p>
+    <p>
+        A narrow collection improves consistency, usability, and data quality.
+        It also reflects the project’s aim of creating a database-driven system
+        that is specific enough to be managed carefully and evaluated critically.
+    </p>
+</section>
 
 <?php require_once __DIR__ . '/../templates/footer.php'; ?>
