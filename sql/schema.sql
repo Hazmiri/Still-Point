@@ -5,7 +5,7 @@ CREATE TABLE users (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY uq_users_username (username)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE instruments (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -18,5 +18,8 @@ CREATE TABLE instruments (
   description TEXT NOT NULL,
   image_path VARCHAR(255) DEFAULT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id)
-);
+  PRIMARY KEY (id),
+  INDEX idx_instruments_type (cue_type),
+  INDEX idx_instruments_material (material),
+  INDEX idx_instruments_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
