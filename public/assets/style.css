@@ -1,10 +1,7 @@
 /* =========================================================
    STILL POINT — CORE VISUAL SYSTEM
-   This stylesheet defines the shared visual language
-   for the public site and member-facing pages.
    ========================================================= */
 
-/* Basic document rules */
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -24,14 +21,12 @@ body {
   background-color: #f5f3ee;
 }
 
-/* Media should never overflow their container */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Keep forms and interactive controls readable */
 input,
 select,
 textarea,
@@ -39,42 +34,72 @@ button {
   font: inherit;
 }
 
-/* Shared page regions */
-header,
+/* Layout containers */
+.site-header,
 main,
-footer {
+.site-footer {
   width: min(1100px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
-/* Main content breathing room */
+.site-header {
+  padding-top: 1.5rem;
+}
+
+.site-header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #d9d2c3;
+}
+
+.site-brand {
+  color: #102a43;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
 main {
   padding: 2rem 0 3rem;
 }
 
-/* Footer spacing */
-footer {
+.site-footer {
   padding: 1.5rem 0 2.5rem;
   border-top: 1px solid #d9d2c3;
   color: #52606d;
   font-size: 0.95rem;
 }
 
-/* Sections */
-section {
-  margin-bottom: 2rem;
+.site-footer p {
+  margin: 0;
 }
 
-/* Navigation area */
-header {
-  padding-top: 1.5rem;
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
-nav[aria-label="Main site navigation"] {
-  border-bottom: 1px solid #d9d2c3;
-  padding-bottom: 1rem;
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1rem;
+  background-color: #102a43;
+  color: #ffffff;
+  z-index: 1000;
 }
 
+/* Navigation */
 nav[aria-label="Main site navigation"] ul {
   list-style: none;
   margin: 0;
@@ -93,6 +118,11 @@ nav[aria-label="Main site navigation"] a {
 nav[aria-label="Main site navigation"] a:hover,
 nav[aria-label="Main site navigation"] a:focus {
   text-decoration: underline;
+}
+
+nav[aria-label="Main site navigation"] a.active {
+  border-bottom: 2px solid #243b53;
+  padding-bottom: 0.2rem;
 }
 
 /* Typography */
@@ -116,7 +146,9 @@ h2 {
 
 p,
 li,
-label {
+label,
+dt,
+dd {
   font-size: 1rem;
 }
 
@@ -125,104 +157,50 @@ p {
   margin-bottom: 1rem;
 }
 
-ul {
-  padding-left: 1.25rem;
+section + section {
+  margin-top: 2rem;
 }
 
-/* Forms */
-form {
-  max-width: 720px;
-}
-
-label {
-  display: inline-block;
-  margin-bottom: 0.35rem;
-  font-weight: 600;
+.lede {
+  max-width: 72ch;
+  font-size: 1.075rem;
   color: #243b53;
 }
 
-input,
-select,
-textarea {
-  width: 100%;
-  max-width: 100%;
-  padding: 0.7rem 0.85rem;
-  border: 1px solid #bcccdc;
-  border-radius: 0.35rem;
-  background-color: #ffffff;
-  color: #102a43;
-  margin-bottom: 1rem;
-}
-
-textarea {
-  min-height: 10rem;
-  resize: vertical;
-}
-
-button {
-  padding: 0.75rem 1.15rem;
-  border: 1px solid #243b53;
-  border-radius: 0.35rem;
-  background-color: #243b53;
-  color: #ffffff;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button:hover,
-button:focus {
-  background-color: #102a43;
-}
-
-/* Collection view */
-article {
+/* Panels */
+.panel {
   background-color: #ffffff;
   border: 1px solid #d9d2c3;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+/* Flash messages */
+.flash-message {
   border-radius: 0.5rem;
-  padding: 1.25rem;
+  padding: 1rem;
   margin-bottom: 1.5rem;
+  border: 1px solid transparent;
 }
 
-article img {
-  margin-bottom: 1rem;
-  border-radius: 0.35rem;
+.flash-message--success {
+  border-color: #2f855a;
+  background-color: #f0fff4;
+  color: #22543d;
 }
 
-hr {
-  display: none;
+.flash-message--error {
+  border-color: #d64545;
+  background-color: #fff5f5;
+  color: #9b1c1c;
 }
 
-/* Links */
-a {
-  color: #3e4c59;
-}
-
-a:hover,
-a:focus {
-  color: #102a43;
-}
-
-/* Footer */
-footer p {
-  margin: 0;
-}
-
-/* Accessibility: visible focus states */
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 3px solid #486581;
-  outline-offset: 2px;
-}
-
-/* Error styling */
+/* Error summary */
 .error-summary {
   border: 1px solid #d64545;
   background-color: #fff5f5;
   padding: 1rem;
-  border-radius: 0.35rem;
+  border-radius: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -241,53 +219,52 @@ textarea:focus {
   color: #9b1c1c;
 }
 
-/* Success messages */
-.flash-success {
-  border: 1px solid #2f855a;
-  background-color: #f0fff4;
-  padding: 1rem;
-  border-radius: 0.35rem;
-  margin-bottom: 1.5rem;
-  color: #22543d;
-}
-
-/* Collection card layout */
-article {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-/* Responsive fallback */
-@media (max-width: 700px) {
-  article {
-    grid-template-columns: 1fr;
-  }
-}
-
-nav a.active {
-  border-bottom: 2px solid #243b53;
-  padding-bottom: 0.2rem;
-}
-
+/* Forms */
+.form-shell,
+.auth-shell,
 .instrument-detail {
-  max-width: 720px;
+  max-width: 760px;
 }
 
-.instrument-detail p {
-  margin-bottom: 0.5rem;
+.field {
+  margin-bottom: 1rem;
 }
 
-.instrument-detail strong {
+.field label {
   display: inline-block;
-  min-width: 90px;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  color: #243b53;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #bcccdc;
+  border-radius: 0.4rem;
+  background-color: #ffffff;
+  color: #102a43;
+}
+
+.field textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.form-help {
+  display: block;
+  margin-top: 0.35rem;
+  color: #52606d;
+  font-size: 0.92rem;
 }
 
 .button {
   display: inline-block;
   padding: 0.75rem 1.15rem;
-  border-radius: 0.35rem;
+  border-radius: 0.4rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -308,27 +285,135 @@ nav a.active {
   color: #ffffff;
 }
 
-.field {
-  margin-bottom: 1rem;
+.button--secondary {
+  background-color: transparent;
+  color: #243b53;
+  border: 1px solid #bcccdc;
 }
 
-.field label {
-  display: inline-block;
-  margin-bottom: 0.35rem;
+.button--secondary:hover,
+.button--secondary:focus {
+  background-color: #ffffff;
+  color: #102a43;
 }
 
-.field input,
-.field textarea,
-.field select {
-  width: 100%;
-  max-width: 100%;
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
-.flash-success {
-  border: 1px solid #2f855a;
-  background-color: #f0fff4;
-  padding: 1rem;
-  border-radius: 0.35rem;
-  margin-bottom: 1.5rem;
-  color: #22543d;
+/* Home page */
+.compact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.compact-list li + li {
+  margin-top: 0.5rem;
+}
+
+/* Collection */
+.collection-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.collection-list > li + li {
+  margin-top: 1.5rem;
+}
+
+.collection-card {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  background-color: #ffffff;
+  border: 1px solid #d9d2c3;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.collection-media img,
+.instrument-hero img {
+  border-radius: 0.5rem;
+  background-color: #e9ecef;
+}
+
+.collection-title {
+  margin-bottom: 0.75rem;
+  font-size: 1.45rem;
+}
+
+.meta-list,
+.instrument-meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.meta-list dt,
+.instrument-meta dt {
+  font-weight: 700;
+  color: #243b53;
+}
+
+.meta-list dd,
+.instrument-meta dd {
+  margin: 0;
+}
+
+/* Dashboard */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  border: 1px solid #d9d2c3;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 1.75rem;
+  color: #102a43;
+}
+
+/* Links and focus */
+a {
+  color: #3e4c59;
+}
+
+a:hover,
+a:focus {
+  color: #102a43;
+}
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid #486581;
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .collection-card {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
 }
