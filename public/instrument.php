@@ -1,101 +1,73 @@
 <?php
-
 declare(strict_types=1);
 
-/**
- * STEP 1 — Validate input from URL
- */
+require_once __DIR__ . '/../src/bootstrap.php';
 
-// Check if 'id' exists
 if (!isset($_GET['id'])) {
-  die('Instrument ID not provided.');
+    flash('Instrument ID not provided.', 'error');
+    redirect('collection.php');
 }
 
-// Convert to integer
 $id = (int) $_GET['id'];
 
-// Validate value
 if ($id <= 0) {
-  die('Invalid instrument ID.');
+    flash('Invalid instrument ID.', 'error');
+    redirect('collection.php');
 }
-
-/**
- * STEP 2 — Query database safely
- */
-
-require_once __DIR__ . '/../src/db.php';
 
 $pdo = db();
 
-// Prepared statement protects against SQL injection
 $stmt = $pdo->prepare("SELECT * FROM instruments WHERE id = :id");
-
-// Execute with parameter
 $stmt->execute(['id' => $id]);
 
-// Fetch one record
 $instrument = $stmt->fetch();
 
-/**
- * STEP 3 — Handle missing data
- */
-
 if (!$instrument) {
-  die('Instrument not found.');
+    flash('Instrument not found.', 'error');
+    redirect('collection.php');
 }
 
+$pageTitle = $instrument['name'] . ' — Still Point';
+$activePage = 'collection';
+
+require_once __DIR__ . '/../templates/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>Instrument</title>
-</head>
-
-<body>
-
-  <section class="instrument-detail">
-    <h1>
-      <?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>
-    </h1>
+<section class="panel instrument-detail">
+    <h1><?= e($instrument['name']) ?></h1>
 
     <?php if (!empty($instrument['image_path'])): ?>
-      <p>
-        <img
-          src="<?= htmlspecialchars($instrument['image_path'], ENT_QUOTES, 'UTF-8') ?>"
-          alt="<?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>"
-          width="320">
-      </p>
+        <div class="instrument-hero">
+            <img
+                src="<?= e($instrument['image_path']) ?>"
+                alt="<?= e($instrument['name']) ?>"
+                width="360"
+            >
+        </div>
     <?php endif; ?>
 
-    <p>
-      <strong>Type:</strong>
-      <?= htmlspecialchars($instrument['cue_type'], ENT_QUOTES, 'UTF-8') ?><br>
+    <dl class="instrument-meta">
+        <dt>Type</dt>
+        <dd><?= e($instrument['cue_type']) ?></dd>
 
-      <strong>Material:</strong>
-      <?= htmlspecialchars($instrument['material'], ENT_QUOTES, 'UTF-8') ?><br>
+        <dt>Material</dt>
+        <dd><?= e($instrument['material']) ?></dd>
 
-      <strong>Length:</strong>
-      <?= (int)$instrument['length_mm'] ?> mm<br>
+        <dt>Length</dt>
+        <dd><?= (int) $instrument['length_mm'] ?> mm</dd>
 
-      <strong>Weight:</strong>
-      <?= (int)$instrument['weight_g'] ?> g<br>
+        <dt>Weight</dt>
+        <dd><?= (int) $instrument['weight_g'] ?> g</dd>
 
-      <strong>Tip:</strong>
-      <?= htmlspecialchars((string) $instrument['tip_mm'], ENT_QUOTES, 'UTF-8') ?> mm
-    </p>
+        <dt>Tip</dt>
+        <dd><?= e((string) $instrument['tip_mm']) ?> mm</dd>
+    </dl>
 
-    <p>
-      <?= htmlspecialchars($instrument['description'], ENT_QUOTES, 'UTF-8') ?>
-    </p>
+    <p><?= e($instrument['description']) ?></p>
 
-    <p>
-      <a href="collection.php">← Back to Collection</a>
-    </p>
-  </section>
+    <div class="action-row">
+        <a class="button button--secondary" href="collection.php">Back to Collection</a>
+    </div>
+</section>
 
-</body>
-
-</html>
+<?php require_once __DIR__ . '/../templates/footer.php'; ?>
