@@ -1,19 +1,11 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Load shared project setup.
- */
 require_once __DIR__ . '/../src/bootstrap.php';
 
-/**
- * Set page title for shared header.
- */
 $pageTitle = 'Still Point';
+$activePage = 'home';
 
-/**
- * Retrieve the three most recent instruments for display on the home page.
- */
 $pdo = db();
 
 $stmt = $pdo->query(
@@ -25,17 +17,13 @@ $stmt = $pdo->query(
 
 $recentInstruments = $stmt->fetchAll();
 
-/**
- * Load shared header.
- */
 require_once __DIR__ . '/../templates/header.php';
 ?>
 
-<section>
-
+<section class="panel">
     <h1>Still Point</h1>
 
-    <p>
+    <p class="lede">
         Still Point is a focused digital catalogue of precision cue instruments.
         The collection is curated around control, balance, composition, and intended use.
     </p>
@@ -51,27 +39,27 @@ require_once __DIR__ . '/../templates/header.php';
         the principles behind the archive. Authenticated custodians can add new instruments
         through the protected console.
     </p>
-
 </section>
 
-<h2>Recent Instruments</h2>
+<section class="panel">
+    <h2>Recent Instruments</h2>
 
-<?php if (empty($recentInstruments)): ?>
-    <p>No instruments have been registered yet.</p>
-<?php else: ?>
-    <ul>
-        <?php foreach ($recentInstruments as $instrument): ?>
-            <li>
-                <a href="instrument.php?id=<?= (int) $instrument['id'] ?>">
-                    <?= htmlspecialchars($instrument['name'], ENT_QUOTES, 'UTF-8') ?>
-                </a>
-                —
-                <?= htmlspecialchars($instrument['cue_type'], ENT_QUOTES, 'UTF-8') ?>
-                /
-                <?= htmlspecialchars($instrument['material'], ENT_QUOTES, 'UTF-8') ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
+    <?php if (empty($recentInstruments)): ?>
+        <p>No instruments have been registered yet.</p>
+    <?php else: ?>
+        <ul class="compact-list">
+            <?php foreach ($recentInstruments as $instrument): ?>
+                <li>
+                    <a href="instrument.php?id=<?= (int) $instrument['id'] ?>">
+                        <?= e($instrument['name']) ?>
+                    </a>
+                    —
+                    <?= e($instrument['cue_type']) ?> /
+                    <?= e($instrument['material']) ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+</section>
 
 <?php require_once __DIR__ . '/../templates/footer.php'; ?>
