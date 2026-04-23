@@ -417,3 +417,22 @@ textarea:focus {
     font-size: 2rem;
   }
 }
+
+/* Collection filter area */
+.filter-summary {
+    margin-bottom: 1rem;
+    color: #52606d;
+}
+
+@media (min-width: 800px) {
+    .form-shell form {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem 1.25rem;
+        align-items: end;
+    }
+
+    .form-shell .action-row {
+        grid-column: 1 / -1;
+    }
+}
