@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../src/bootstrap.php';
@@ -81,6 +82,12 @@ require_once __DIR__ . '/../templates/header.php';
     <p>
         The form is intentionally limited to essential fields in order to reduce
         friction and support straightforward completion.
+    </p>
+
+    <p>
+        Useful enquiries usually identify the instrument name, the part of the listing being questioned,
+        and whether the request relates to dimensions, material, or general clarification. This helps the
+        response remain specific and efficient.
     </p>
 </section>
 
