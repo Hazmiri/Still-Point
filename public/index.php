@@ -26,19 +26,47 @@ require_once __DIR__ . '/../templates/header.php';
 
     <p class="lede">
         Still Point is a focused digital catalogue of precision cue instruments.
-        The collection is curated around control, balance, composition, and intended use.
+        It was designed as a controlled archive rather than a broad sports shop,
+        so that each entry could be recorded with clarity, consistency and purpose.
     </p>
 
     <p>
-        Rather than presenting a general sports shop, the site concentrates on a narrow
-        and deliberate range of cue-based instruments so that each entry can be documented
-        with care and precision.
+        The site brings together public browsing and protected content management.
+        A visitor can move through the collection, open an individual instrument page,
+        and read supporting pages that explain the logic of the archive. A member can
+        sign in separately and register new entries through the protected dashboard.
     </p>
 
     <p>
-        Visitors can explore the public collection, read instrument details, and understand
-        the principles behind the archive. Authenticated custodians can add new instruments
-        through the protected console.
+        The project is deliberately narrow. Instead of trying to display every possible
+        sporting item, it concentrates on a specific class of instruments so that the
+        relationship between data, usability and structure can be seen more clearly.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>What the archive contains</h2>
+
+    <p>
+        Each instrument is recorded through a structured set of attributes rather than
+        loose description alone. Entries may include cue type, material, dimensional
+        properties, an uploaded image, and a short account of the instrument’s intended use.
+    </p>
+
+    <p>
+        This makes the collection easier to browse because the user is not forced to rely
+        on scattered details or inconsistent wording from one entry to another.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>How to use the site</h2>
+
+    <p>
+        A visitor can begin with the collection page, open a full instrument entry,
+        and then use the provenance, FAQ and contact pages to understand the wider context
+        of the archive. The protected member area is separated from the public route so that
+        browsing and content management remain clearly distinct actions.
     </p>
 </section>
 
@@ -61,31 +89,6 @@ require_once __DIR__ . '/../templates/header.php';
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
-</section>
-
-<section class="panel">
-    <h2>What the archive contains</h2>
-
-    <p>
-        The collection records instruments through structured attributes rather than vague description alone.
-        Each entry may include its cue type, material, dimensional properties, image, and a short account
-        of its intended use.
-    </p>
-
-    <p>
-        This makes the site easier to browse and compare because the user is not forced to rely on scattered
-        details or inconsistent wording from one record to another.
-    </p>
-</section>
-
-<section class="panel">
-    <h2>How to use the site</h2>
-
-    <p>
-        A visitor can begin with the collection, open an individual instrument entry, and then use the
-        supporting pages to understand the logic behind the archive. Members can sign in separately to
-        manage protected content through the dashboard.
-    </p>
 </section>
 
 <?php require_once __DIR__ . '/../templates/footer.php'; ?>
