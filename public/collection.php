@@ -3,14 +3,72 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../src/bootstrap.php';
 
+/**
+ * Set page title and active navigation state.
+ */
 $pageTitle = 'Still Point — Collection';
 $activePage = 'collection';
 
+/**
+ * Read filter values from the URL.
+ * GET is appropriate here because the user is searching and filtering public content.
+ */
+$search = trim($_GET['search'] ?? '');
+$cueType = trim($_GET['cue_type'] ?? '');
+$material = trim($_GET['material'] ?? '');
+
+/**
+ * Create database connection.
+ */
 $pdo = db();
 
-$items = $pdo
-    ->query("SELECT * FROM instruments ORDER BY created_at DESC")
-    ->fetchAll();
+/**
+ * Start with a base SQL query.
+ * We will add conditions only when the user provides filter values.
+ */
+$sql = "SELECT * FROM instruments WHERE 1=1";
+$params = [];
+
+/**
+ * If a search term is provided, filter by instrument name.
+ */
+if ($search !== '') {
+    $sql .= " AND name LIKE :search";
+    $params['search'] = '%' . $search . '%';
+}
+
+/**
+ * If a cue type is selected, filter by cue type.
+ */
+if ($cueType !== '') {
+    $sql .= " AND cue_type = :cue_type";
+    $params['cue_type'] = $cueType;
+}
+
+/**
+ * If a material is provided, filter by material.
+ * LIKE is used here so partial matches are possible.
+ */
+if ($material !== '') {
+    $sql .= " AND material LIKE :material";
+    $params['material'] = '%' . $material . '%';
+}
+
+/**
+ * Always show newest entries first.
+ */
+$sql .= " ORDER BY created_at DESC";
+
+/**
+ * Prepare and execute the query safely.
+ */
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+
+/**
+ * Fetch filtered results.
+ */
+$items = $stmt->fetchAll();
 
 require_once __DIR__ . '/../templates/header.php';
 ?>
@@ -18,9 +76,59 @@ require_once __DIR__ . '/../templates/header.php';
 <section>
     <h1>The Collection</h1>
 
+    <p class="lede">
+        Browse the archive by instrument name, cue type, or material.
+        The filter is designed to help the user reach relevant entries more quickly.
+    </p>
+</section>
+
+<section class="panel form-shell">
+    <h2>Search and filter</h2>
+
+    <form method="GET" action="collection.php">
+        <div class="field">
+            <label for="search">Search by name</label>
+            <input
+                type="text"
+                id="search"
+                name="search"
+                value="<?= e($search) ?>"
+                placeholder="e.g. Ash Precision Cue"
+            >
+        </div>
+
+        <div class="field">
+            <label for="cue_type">Cue type</label>
+            <select id="cue_type" name="cue_type">
+                <option value="">All types</option>
+                <option value="playing" <?= $cueType === 'playing' ? 'selected' : '' ?>>Playing</option>
+                <option value="break" <?= $cueType === 'break' ? 'selected' : '' ?>>Break</option>
+                <option value="training" <?= $cueType === 'training' ? 'selected' : '' ?>>Training</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="material">Material</label>
+            <input
+                type="text"
+                id="material"
+                name="material"
+                value="<?= e($material) ?>"
+                placeholder="e.g. Ash, Ebony, Maple"
+            >
+        </div>
+
+        <div class="action-row">
+            <button class="button button--primary" type="submit">Apply filters</button>
+            <a class="button button--secondary" href="collection.php">Reset</a>
+        </div>
+    </form>
+</section>
+
+<section>
     <?php if (empty($items)): ?>
         <div class="panel">
-            <p>No instruments have been registered yet.</p>
+            <p>No instruments matched your search.</p>
         </div>
     <?php else: ?>
         <ul class="collection-list">
