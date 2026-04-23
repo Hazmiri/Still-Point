@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../src/bootstrap.php';
@@ -46,6 +47,21 @@ require_once __DIR__ . '/../templates/header.php';
         A narrow collection improves consistency, usability, and data quality.
         It also reflects the project’s aim of creating a database-driven system
         that is specific enough to be managed carefully and evaluated critically.
+    </p>
+</section>
+
+<section class="panel">
+    <h2>Why material and measurement matter</h2>
+
+    <p>
+        Material and dimension are not minor details in this collection. They affect handling, balance,
+        feedback, and the way an instrument is understood by the user. For that reason, the archive does
+        not treat description as enough on its own. Structured data is part of the value of the record.
+    </p>
+
+    <p>
+        This was important to me while building the project because it changed the website from a page of
+        text into a system of organised entries that could be compared and evaluated more carefully.
     </p>
 </section>
 
