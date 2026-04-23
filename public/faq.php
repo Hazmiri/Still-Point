@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../src/bootstrap.php';
@@ -46,6 +47,24 @@ require_once __DIR__ . '/../templates/header.php';
     <p>
         Use the contact page and provide a clear subject and message.
         Identifying the relevant instrument helps reduce ambiguity and supports a better response.
+    </p>
+
+    <h2>Why are only certain cue types included?</h2>
+    <p>
+        The collection is intentionally controlled so that each record can be structured consistently and managed
+        with greater clarity. This improves both usability and the reliability of the stored data.
+    </p>
+
+    <h2>Are the measurements standardised?</h2>
+    <p>
+        Measurements are entered in a structured format so that entries remain comparable. This helps reduce
+        ambiguity and makes the database more useful than a purely descriptive page.
+    </p>
+
+    <h2>Why is member access protected?</h2>
+    <p>
+        The public side of the site is designed for browsing and enquiry, while the protected side is reserved
+        for authenticated content management. This separation reduces confusion and supports trust.
     </p>
 </section>
 
