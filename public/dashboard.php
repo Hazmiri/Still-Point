@@ -24,7 +24,8 @@ require_once __DIR__ . '/../templates/header.php';
 
     <p class="lede">
         Welcome back<?= isset($_SESSION['username']) ? ', ' . e($_SESSION['username']) : '' ?>.
-        Use this area to manage the protected side of the collection.
+        The protected area allows authenticated management of the collection, including the registration 
+        of new instruments and review of the current archive.
     </p>
 </section>
 
