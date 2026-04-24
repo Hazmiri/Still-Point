@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../src/bootstrap.php';
@@ -77,8 +78,14 @@ require_once __DIR__ . '/../templates/header.php';
     <h1>The Collection</h1>
 
     <p class="lede">
-        Browse the archive by instrument name, cue type, or material.
-        The filter is designed to help the user reach relevant entries more quickly.
+        The collection presents each instrument as a structured entry rather than a loose product listing.
+        Visitors can browse by name, cue type and material, then open a full page for each item.
+    </p>
+
+    <p>
+        This page is designed to support comparison. Instead of relying only on image and title,
+        each entry also presents core metadata so that differences between instruments remain visible
+        during browsing.
     </p>
 </section>
 
@@ -93,8 +100,7 @@ require_once __DIR__ . '/../templates/header.php';
                 id="search"
                 name="search"
                 value="<?= e($search) ?>"
-                placeholder="e.g. Ash Precision Cue"
-            >
+                placeholder="e.g. Ash Precision Cue">
         </div>
 
         <div class="field">
@@ -114,8 +120,7 @@ require_once __DIR__ . '/../templates/header.php';
                 id="material"
                 name="material"
                 value="<?= e($material) ?>"
-                placeholder="e.g. Ash, Ebony, Maple"
-            >
+                placeholder="e.g. Ash, Ebony, Maple">
         </div>
 
         <div class="action-row">
@@ -140,8 +145,7 @@ require_once __DIR__ . '/../templates/header.php';
                                 <img
                                     src="<?= e($item['image_path']) ?>"
                                     alt="<?= e($item['name']) ?>"
-                                    width="220"
-                                >
+                                    width="220">
                             <?php endif; ?>
                         </div>
 
