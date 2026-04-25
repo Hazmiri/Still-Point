@@ -1,5 +1,16 @@
 # Still Point
 
+## Screenshots
+
+### Home page
+![Home page](docs/screenshots/01-home-page.png)
+
+### Collection page
+![Collection page](docs/screenshots/02-collection-page.png)
+
+### Protected member area
+![Dashboard](docs/screenshots/08-dashboard-page.png)
+
 Still Point is a database-driven catalogue of precision cue instruments. It was built as a focused web application rather than a general sports shop, combining a public browsing experience with a protected member area for content management.
 
 ## Project overview
